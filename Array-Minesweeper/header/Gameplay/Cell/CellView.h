@@ -2,6 +2,7 @@
 #include "../../header/UI/UIElement/ButtonView.h"
 #include "../../header/UI/UIElement/ImageView.h"
 
+
 namespace Gameplay
 {
 	namespace Cell
@@ -17,6 +18,8 @@ namespace Gameplay
 			void InitialzieButtonImage(float width, float height);
 			const int tileSize = 32;
 
+			int slicecount = 12;
+
 			void Destroy();
 		public:
 			CellView(CellController* controller);
@@ -25,6 +28,9 @@ namespace Gameplay
 			void Initialzie();
 			void Update();
 			void Render();
+
+			void SetCellTexture();
+
 
 		};
 

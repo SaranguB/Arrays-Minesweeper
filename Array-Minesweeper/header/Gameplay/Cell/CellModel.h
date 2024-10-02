@@ -1,13 +1,36 @@
 #pragma once
+#include <sfml/Graphics.hpp>
 
 namespace Gameplay
 {
 	namespace Cell
 	{
+        enum class CellState
+        {
+            HIDDEN,
+            OPEN,
+            FLAGGED,
+        };
+
+        enum class CellValue
+        {
+            EMPTY,
+            ONE,
+            TWO,
+            THREE,
+            FOUR,
+            FIVE,
+            SIX,
+            SEVEN,
+            EIGHT,
+            MINE,
+        };
 
 		class CellModel
 		{
 		private:
+            CellState cellState;
+            CellValue cellValue;
 
 		public:
 			CellModel();
@@ -15,6 +38,15 @@ namespace Gameplay
 
 			void Initialzie();
 
+            void SetCellState(CellState state);
+            CellState GetCellState();
+
+            void SetCellValue(CellValue value);
+            CellValue GetCellValue();
+
+            sf::Vector2i GetGridPosition();
+
+            void Reset();
 		};
 
 	}

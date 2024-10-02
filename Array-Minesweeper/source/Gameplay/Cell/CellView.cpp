@@ -1,6 +1,7 @@
 #include "../../header/Gameplay/Cell/CellView.h"
 #include "../../header/Global/Config.h"
-
+#include "../../header/Gameplay/Cell/CellController.h"
+#include "../../header/Gameplay/Cell/CellModel.h"
 
 namespace Gameplay
 {
@@ -9,7 +10,7 @@ namespace Gameplay
 		using namespace UI::UIElement;
 		using namespace Global;
 
-		
+
 
 		CellView::CellView(CellController* controller)
 		{
@@ -33,7 +34,7 @@ namespace Gameplay
 		}
 		void CellView::InitialzieButtonImage(float width, float height)
 		{
-			cellButtom->initialize("cell", Config::cells_texture_path, width, height, sf::Vector2f(0, 0));
+			cellButtom->initialize("cell", Config::cells_texture_path, width * slicecount, height, sf::Vector2f(0, 0));
 		}
 
 		void CellView::Update()
@@ -44,6 +45,28 @@ namespace Gameplay
 		void CellView::Render()
 		{
 			cellButtom->render();
+			SetCellTexture();
+
+		}
+
+		void CellView::SetCellTexture()
+		{
+			int index = static_cast<int>(cellController->GetCellValue());
+
+			switch (cellController->GetCellState())
+			{
+			case CellState::HIDDEN:
+				cellButtom->setTextureRect(sf::IntRect(10 * tileSize, 0, tileSize, tileSize));
+				break;
+
+			case CellState::OPEN:
+				cellButtom->setTextureRect(sf::IntRect(index * tileSize, 0, tileSize, tileSize));
+				break;
+			case CellState::FLAGGED:
+				cellButtom->setTextureRect(sf::IntRect(11 * tileSize, 0, tileSize, tileSize));
+				break;
+			}
+
 
 		}
 

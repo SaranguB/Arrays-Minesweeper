@@ -1,14 +1,18 @@
 #pragma once
+#include "CellModel.h"
 
 namespace Gameplay
 {
 	namespace Cell
 	{
 		class CellView;
+		class CellModel;
+		
 		class CellController
 		{
 		private:
 			CellView* cellView;
+			CellModel* cellModel;
 
 		public:
 			CellController();
@@ -19,6 +23,15 @@ namespace Gameplay
 			void Render();
 
 			void Reset();
+
+			void SetCellState(CellState state);
+			CellState GetCellState();
+
+			void SetCellValue(CellValue value);
+			CellValue GetCellValue();
+
+			sf::Vector2i GetGridPosition();
+
 		};
 
 	}
