@@ -5,14 +5,21 @@ namespace Gameplay
 {
 	namespace Board
 	{
-		
+
 		BoardController::BoardController()
 		{
 			boardView = new BoardView(this);
 		}
 		BoardController::~BoardController()
 		{
+			Destroy();
+		}
+
+		void BoardController::Destroy()
+		{
+
 			delete(boardView);
+
 		}
 		void BoardController::Initialize()
 		{
@@ -32,12 +39,13 @@ namespace Gameplay
 		}
 		void BoardController::DeleteBoard()
 		{
+
 		}
+
 		void BoardController::Reset()
 		{
+
 		}
-		void BoardController::Destroy()
-		{
-		}
+
 	}
 }

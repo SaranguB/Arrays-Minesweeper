@@ -17,8 +17,9 @@ namespace Gameplay
 		}
 		BoardView::~BoardView()
 		{
-			delete(boardController);
 			delete(boardImage);
+			delete(backgroundImage);
+
 		}
 		void BoardView::Initialize()
 		{
