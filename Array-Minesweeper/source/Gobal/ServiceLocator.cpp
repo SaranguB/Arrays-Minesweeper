@@ -7,6 +7,7 @@ namespace Global
 	using namespace Event;
 	using namespace Sound;
 	using namespace UI;
+	using namespace Gameplay::Board;
 
 	ServiceLocator::ServiceLocator()
 	{
@@ -14,6 +15,7 @@ namespace Global
 		event_service = nullptr;
 		sound_service = nullptr;
 		ui_service = nullptr;
+		boardService = nullptr;
 
 		createServices();
 	}
@@ -26,6 +28,7 @@ namespace Global
 		graphic_service = new GraphicService();
 		sound_service = new SoundService();
 		ui_service = new UIService();
+		boardService = new BoardService();
 	}
 
 	void ServiceLocator::initialize()
@@ -34,6 +37,7 @@ namespace Global
 		sound_service->initialize();
 		event_service->initialize();
 		ui_service->initialize();
+		boardService->Initialize();
 	}
 
 	void ServiceLocator::update()
@@ -41,12 +45,14 @@ namespace Global
 		event_service->update();
 		ui_service->update();
 		graphic_service->update();
+		boardService->Update();
 	}
 
 	void ServiceLocator::render()
 	{
 		ui_service->render();
 		graphic_service->render();
+		boardService->Render();
 	}
 
 	void ServiceLocator::clearAllServices()
@@ -55,6 +61,7 @@ namespace Global
 		delete(graphic_service);
 		delete(sound_service);
 		delete(event_service);
+		delete(boardService);
 	}
 
 	ServiceLocator* ServiceLocator::getInstance()
@@ -70,6 +77,11 @@ namespace Global
 	SoundService* ServiceLocator::getSoundService() { return sound_service; }
 
 	UIService* ServiceLocator::getUIService() { return ui_service; }
+
+	Gameplay::Board::BoardService* ServiceLocator::GetBoardService()
+	{
+		return boardService;
+	}
 
 	void ServiceLocator::deleteServiceLocator() { delete(this); }
 }
