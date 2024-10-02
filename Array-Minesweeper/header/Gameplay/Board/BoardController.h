@@ -1,4 +1,6 @@
 #pragma once
+#include "../../header/Gameplay/Cell/CellController.h"
+
 
 namespace Gameplay
 {
@@ -8,11 +10,14 @@ namespace Gameplay
 		class BoardController
 		{
 		private:
+
 			BoardView* boardView;
+			Cell::CellController* cellController;
 
 			void CreateBoard();
 			void DeleteBoard();
 			void Destroy();
+
 
 		public:
 			BoardController();
@@ -27,7 +32,7 @@ namespace Gameplay
 			static const int numberOfColumms = 9;
 			static const int minesCount = 8;
 
-			
+
 		};
 	}
 }
