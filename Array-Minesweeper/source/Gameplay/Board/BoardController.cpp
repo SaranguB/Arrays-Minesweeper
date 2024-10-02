@@ -1,4 +1,5 @@
 #include "../../header/Gameplay/Board/BoardController.h"
+#include "../../header/Gameplay/Board/BoardView.h"
 
 namespace Gameplay
 {
@@ -7,18 +8,23 @@ namespace Gameplay
 		
 		BoardController::BoardController()
 		{
+			boardView = new BoardView(this);
 		}
 		BoardController::~BoardController()
 		{
+			delete(boardView);
 		}
 		void BoardController::Initialize()
 		{
+			boardView->Initialize();
 		}
 		void BoardController::Update()
 		{
+			boardView->Update();
 		}
 		void BoardController::Render()
 		{
+			boardView->Render();
 		}
 
 		void BoardController::CreateBoard()

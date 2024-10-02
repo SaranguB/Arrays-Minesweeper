@@ -9,6 +9,8 @@ namespace Gameplay
 		{
 		private:
 			BoardController* boardController;
+
+			void Destroy();
 		public:
 			BoardService();
 			~BoardService();
