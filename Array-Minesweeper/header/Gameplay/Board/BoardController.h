@@ -11,8 +11,9 @@ namespace Gameplay
 		{
 		private:
 
+
+
 			BoardView* boardView;
-			Cell::CellController* cellController;
 
 			void CreateBoard();
 			void DeleteBoard();
@@ -32,10 +33,11 @@ namespace Gameplay
 			void Render();
 			void Reset();
 
-			static const int numberOfRows = 9;
-			static const int numberOfColumms = 9;
-			static const int minesCount = 8;
+			static constexpr int numberOfRows = 9;
+			static constexpr int numberOfColumms = 9;
+			static constexpr int minesCount = 8;
 
+			Cell::CellController* cells[numberOfColumms];
 
 
 

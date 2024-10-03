@@ -19,7 +19,7 @@ namespace Gameplay
 
 		void BoardController::Destroy()
 		{
-
+			DeleteBoard();
 			delete(boardView);
 
 		}
@@ -31,36 +31,56 @@ namespace Gameplay
 		void BoardController::Update()
 		{
 			boardView->Update();
-			cellController->Update();
+			for (int i = 0;i < numberOfColumms;i++)
+			{
+				cells[i]->Update();
+			}
+			
 		}
 		void BoardController::Render()
 		{
 			boardView->Render();
-			cellController->Render();
+			for (int i = 0;i < numberOfColumms;i++)
+			{
+				cells[i]->Render();
+			}
 		}
 
 		void BoardController::InitializeCells()
 		{
 			float cellHeight = boardView->GetCellHeight();
 			float CellWidth = boardView->GetCellWidth();
+			for (int i = 0;i < numberOfColumms;i++)
+			{
 
-			cellController->Initialize(CellWidth, cellHeight);
-
+				cells[i]->Initialize(CellWidth, cellHeight);
+			}
 		}
 
 		void BoardController::CreateBoard()
 		{
-			cellController = new CellController();
+			for (int i = 0;i < numberOfColumms;i++)
+			{
+				cells[i] = new CellController(i);
+			}
 
 		}
 		void BoardController::DeleteBoard()
 		{
-			delete(cellController);
+			for (int i = 0;i < numberOfColumms;i++)
+			{
+				delete(cells[i]);
+			}
+			
 		}
 
 		void BoardController::Reset()
 		{
-			cellController->Reset();
+			for (int i = 0;i < numberOfColumms;i++)
+			{
+				cells[i]->Reset();
+			}
+		
 		}
 
 	}

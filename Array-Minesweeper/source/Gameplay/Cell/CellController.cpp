@@ -6,9 +6,9 @@ namespace Gameplay
 {
 	namespace Cell
 	{
-		CellController::CellController()
+		CellController::CellController(int cellIndex)
 		{
-			cellModel = new CellModel();
+			cellModel = new CellModel(cellIndex);
 			cellView = new CellView(this);
 
 		}
@@ -56,6 +56,10 @@ namespace Gameplay
 		sf::Vector2i CellController::GetGridPosition()
 		{
 			return cellModel->GetGridPosition();
+		}
+		int CellController::GetCellIndex()
+		{
+			return cellModel->GetCellIndex();;
 		}
 	}
 }

@@ -32,8 +32,10 @@ namespace Gameplay
             CellState cellState;
             CellValue cellValue;
 
+            int cellIndex;
+
 		public:
-			CellModel();
+			CellModel(int cellIndex);
 			~CellModel();
 
 			void Initialzie();
@@ -47,6 +49,8 @@ namespace Gameplay
             sf::Vector2i GetGridPosition();
 
             void Reset();
+
+            int GetCellIndex();
 		};
 
 	}

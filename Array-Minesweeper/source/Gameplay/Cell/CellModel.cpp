@@ -4,8 +4,9 @@ namespace Gameplay
 {
 	namespace Cell
 	{
-		CellModel::CellModel()
+		CellModel::CellModel(int cellIndex)
 		{
+			this->cellIndex = cellIndex;
 		}
 		CellModel::~CellModel()
 		{
@@ -37,6 +38,10 @@ namespace Gameplay
 		{
 			cellState = CellState::HIDDEN;
 			cellValue = CellValue::EMPTY;
+		}
+		int CellModel::GetCellIndex()
+		{
+			return cellIndex;
 		}
 	}
 }
