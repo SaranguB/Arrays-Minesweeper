@@ -85,6 +85,7 @@ namespace UI
 			return instructions_screen_ui_controller;
 
 		case GameState::GAMEPLAY:
+			//printf("Gameplay");
 			return gameplay_ui_controller;
 
 		case GameState::CREDITS:

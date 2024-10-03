@@ -19,7 +19,7 @@ namespace Gameplay
 
 		float GetRemainingTime();
 
-
+		int GetMineCount();
 	};
 
 }

@@ -41,6 +41,7 @@ namespace Gameplay
 
 			void ResetBoard();
 
+			int GetMineCount();
 
 
 		};

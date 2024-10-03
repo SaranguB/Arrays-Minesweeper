@@ -21,6 +21,8 @@ namespace Gameplay
 			void UpdateRemainingTime();
 
 			float GetRemainingTime();
+
+			int GetMineCount();
 		};
 	
 }

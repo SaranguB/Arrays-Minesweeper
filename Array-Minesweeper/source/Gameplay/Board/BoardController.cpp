@@ -108,5 +108,10 @@ namespace Gameplay
 
 		}
 
+		int BoardController::GetMineCount()
+		{
+			return minesCount;
+		}
+
 	}
 }

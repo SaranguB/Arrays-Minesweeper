@@ -55,8 +55,9 @@ namespace Global
 	{
 		event_service->update();
 		timeService->update();
-		ui_service->update();
 		graphic_service->update();
+		ui_service->update();
+
 		if (GameService::getGameState() == GameState::GAMEPLAY)
 		{
 			boardService->Update();
@@ -66,13 +67,14 @@ namespace Global
 
 	void ServiceLocator::render()
 	{
-		ui_service->render();
 		graphic_service->render();
 		if (GameService::getGameState() == GameState::GAMEPLAY)
 		{
 			gameplayService->Render();
 			boardService->Render();
 		}
+		ui_service->render();
+
 	}
 
 	void ServiceLocator::clearAllServices()

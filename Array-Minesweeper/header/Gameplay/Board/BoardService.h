@@ -20,7 +20,7 @@ namespace Gameplay
 			void Render();
 			void ResetBoard();
 
-			
+			int GetMineCount();
 
 		};
 	}
