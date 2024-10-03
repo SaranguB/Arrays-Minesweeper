@@ -37,7 +37,9 @@ namespace Gameplay
 			static constexpr int numberOfColumms = 9;
 			static constexpr int minesCount = 8;
 
-			Cell::CellController* cells[numberOfColumms];
+			Cell::CellController* board[numberOfRows][numberOfColumms];
+
+			void ResetBoard();
 
 
 

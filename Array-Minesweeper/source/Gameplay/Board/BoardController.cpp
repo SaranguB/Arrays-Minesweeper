@@ -31,18 +31,25 @@ namespace Gameplay
 		void BoardController::Update()
 		{
 			boardView->Update();
-			for (int i = 0;i < numberOfColumms;i++)
+			for (int i = 0;i < numberOfRows;i++)
 			{
-				cells[i]->Update();
+				for (int j = 0;j < numberOfColumms;j++)
+				{
+
+					board[i][j]->Update();
+				}
 			}
-			
+
 		}
 		void BoardController::Render()
 		{
 			boardView->Render();
-			for (int i = 0;i < numberOfColumms;i++)
+			for (int i = 0;i < numberOfRows;i++)
 			{
-				cells[i]->Render();
+				for (int j = 0;j < numberOfColumms;j++)
+				{
+					board[i][j]->Render();
+				}
 			}
 		}
 
@@ -50,37 +57,55 @@ namespace Gameplay
 		{
 			float cellHeight = boardView->GetCellHeight();
 			float CellWidth = boardView->GetCellWidth();
-			for (int i = 0;i < numberOfColumms;i++)
-			{
 
-				cells[i]->Initialize(CellWidth, cellHeight);
+			for (int i = 0;i < numberOfRows;i++)
+			{
+				for (int j = 0;j < numberOfColumms;j++)
+				{
+					board[i][j]->Initialize(CellWidth, cellHeight);
+				}
 			}
 		}
 
 		void BoardController::CreateBoard()
 		{
-			for (int i = 0;i < numberOfColumms;i++)
+			for (int i = 0;i < numberOfRows;i++)
 			{
-				cells[i] = new CellController(i);
+				for (int j = 0;j < numberOfColumms;j++)
+				{
+
+					board[i][j] = new CellController(sf::Vector2i(i,j));
+				}
 			}
 
 		}
 		void BoardController::DeleteBoard()
 		{
-			for (int i = 0;i < numberOfColumms;i++)
+
+			for (int i = 0;i < numberOfRows;i++)
 			{
-				delete(cells[i]);
+				for (int j = 0;j < numberOfColumms;j++)
+				{
+					delete(board[i][j]);
+				}
 			}
-			
 		}
 
 		void BoardController::Reset()
 		{
-			for (int i = 0;i < numberOfColumms;i++)
+			ResetBoard();
+		}
+
+		void BoardController::ResetBoard()
+		{
+			for (int i = 0;i < numberOfRows;i++)
 			{
-				cells[i]->Reset();
+				for (int j = 0;j < numberOfColumms;j++)
+				{
+					board[i][j]->Reset();
+				}
 			}
-		
+
 		}
 
 	}

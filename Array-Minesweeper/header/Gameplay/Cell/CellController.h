@@ -15,7 +15,7 @@ namespace Gameplay
 			CellModel* cellModel;
 
 		public:
-			CellController(int cellIndex);
+			CellController(sf::Vector2i position);
 			~CellController();
 
 			void Initialize(float cellWidth, float cellHeight);
@@ -31,7 +31,8 @@ namespace Gameplay
 			CellValue GetCellValue();
 
 			sf::Vector2i GetGridPosition();
-			int GetCellIndex();
+
+			sf::Vector2i GetCellPosition();
 		};
 
 	}
