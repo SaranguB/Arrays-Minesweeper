@@ -1,11 +1,14 @@
 #include "../../header/Gameplay/Cell/CellController.h"
 #include "../../header/Gameplay/Cell/CellView.h"
 #include "../../header/Gameplay/Cell/CellModel.h"
+#include "../../header/Global/ServiceLocator.h"
 
 namespace Gameplay
 {
 	namespace Cell
 	{
+		using namespace Global;
+
 		CellController::CellController(sf::Vector2i position)
 		{
 			cellModel = new CellModel(position);
@@ -17,11 +20,11 @@ namespace Gameplay
 			delete(cellModel);
 			delete(cellView);
 		}
-	
+
 		void CellController::Initialize(float cellWidth, float cellHeight)
 		{
 			cellModel->Initialzie();
-			cellView->Initialize(cellWidth,cellHeight);
+			cellView->Initialize(cellWidth, cellHeight);
 		}
 
 		void CellController::Update()
@@ -57,6 +60,33 @@ namespace Gameplay
 		{
 			return cellModel->GetCellPosition();
 		}
-		
+
+		void CellController::OpenCell()
+		{
+			if (cellModel->GetCellState() != CellState::FLAGGED)
+			{
+				cellModel->SetCellState(CellState::OPEN);
+				ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::BUTTON_CLICK);
+			}
+		}
+
+		void CellController::FlagCell()
+		{
+			switch (cellModel->GetCellState())
+			{
+			case::Gameplay::Cell::CellState::FLAGGED:
+				cellModel->SetCellState(CellState::HIDDEN);
+				break;
+
+			case::Gameplay::Cell::CellState::HIDDEN:
+				cellModel->SetCellState(CellState::FLAGGED);
+				break;
+
+			default:
+				break;
+			}
+			ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::FLAG);
+
+		}
 	}
 }

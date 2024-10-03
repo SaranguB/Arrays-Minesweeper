@@ -2,6 +2,10 @@
 #include "../../header/Global/Config.h"
 #include "../../header/Gameplay/Cell/CellController.h"
 #include "../../header/Gameplay/Cell/CellModel.h"
+#include "../../header/Gameplay/GameplayService.h"
+#include "../../header/Sound/SoundService.h"
+#include "../../header/Main/GameService.h"
+#include <iostream>
 
 namespace Gameplay
 {
@@ -9,7 +13,7 @@ namespace Gameplay
 	{
 		using namespace UI::UIElement;
 		using namespace Global;
-
+		using namespace Main;
 
 
 		CellView::CellView(CellController* controller)
@@ -28,15 +32,19 @@ namespace Gameplay
 			delete(cellButtom);
 		}
 
-		void CellView::InitialzieButtonImage(float width, float height)
-		{
-			cellButtom->initialize("cell", Config::cells_texture_path, width * slicecount, height, GetCellScreenPosition(width,height));
-		}
-
+		
 		void CellView::Initialize(float cellWidth, float cellHeight)
 		{
 			InitialzieButtonImage(cellWidth, cellHeight);
+			
 		}
+
+		void CellView::InitialzieButtonImage(float width, float height)
+		{
+			cellButtom->initialize("cell", Config::cells_texture_path, width * slicecount, height, GetCellScreenPosition(width, height));
+			RegisterButtonCallback();
+		}
+
 
 		void CellView::Update()
 		{
@@ -76,10 +84,35 @@ namespace Gameplay
 
 			sf::Vector2i cellIndex = cellController->GetCellPosition();
 
-			float xScreenPosition = cellLeftOffset + cellIndex.y*width;
-			float YScreenPosition = cellTopOffset + cellIndex.x*height;
+			float xScreenPosition = cellLeftOffset + cellIndex.y * width;
+			float YScreenPosition = cellTopOffset + cellIndex.x * height;
 
 			return sf::Vector2f(xScreenPosition, YScreenPosition);
+		}
+
+		void CellView::RegisterButtonCallback()
+		{
+			cellButtom->registerCallbackFuntion(std::bind(&CellView::CellButtonCallback, this,std::placeholders::_1));
+	
+		}
+
+		void CellView::CellButtonCallback(ButtonType type)
+		{
+			
+			switch (type)
+			{
+			case ButtonType::LEFT_MOUSE_BUTTON:
+				cellController->OpenCell();
+				break;
+
+			case ButtonType::RIGHT_MOUSE_BUTTON:
+				//printf("right Is CLicked");
+				cellController->FlagCell();
+				break;
+
+			default:
+				break;
+			}
 		}
 
 

@@ -33,6 +33,9 @@ namespace Gameplay
 			sf::Vector2i GetGridPosition();
 
 			sf::Vector2i GetCellPosition();
+
+			void OpenCell();
+			void FlagCell();
 		};
 
 	}
