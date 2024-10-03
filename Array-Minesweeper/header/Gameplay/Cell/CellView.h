@@ -18,6 +18,9 @@ namespace Gameplay
 			void InitialzieButtonImage(float width, float height);
 			const int tileSize = 32;
 
+			const float cellTopOffset = 274.f;
+			const float cellLeftOffset = 583.f;
+
 			int slicecount = 12;
 
 			void Destroy();
@@ -25,11 +28,13 @@ namespace Gameplay
 			CellView(CellController* controller);
 			~CellView();
 
-			void Initialzie();
+			void Initialize(float cellWidth, float cellHeight);
 			void Update();
 			void Render();
 
 			void SetCellTexture();
+
+			sf::Vector2f GetCellScreenPosition();
 
 
 		};

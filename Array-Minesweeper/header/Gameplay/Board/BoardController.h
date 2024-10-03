@@ -18,6 +18,10 @@ namespace Gameplay
 			void DeleteBoard();
 			void Destroy();
 
+			float cellHeight;
+			float CellWidth;
+
+			void InitializeCells();
 
 		public:
 			BoardController();
@@ -31,6 +35,8 @@ namespace Gameplay
 			static const int numberOfRows = 9;
 			static const int numberOfColumms = 9;
 			static const int minesCount = 8;
+
+
 
 
 		};

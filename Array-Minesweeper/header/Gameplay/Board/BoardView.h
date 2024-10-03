@@ -17,6 +17,9 @@ namespace Gameplay
 			const float boardWidth = 866.f;
 			const float boardHeight = 1080.f;
 
+			const float boardWidthOffset = 115.f;
+			const float boardHeightOffset = 329.f;
+
 			sf::RenderWindow* gameWindow;
 
 			void InitializeBackgroundImage();
@@ -30,6 +33,9 @@ namespace Gameplay
 			void Update();
 			void Render();
 			void Reset();
+		
+			float GetCellWidth();
+			float GetCellHeight();
 		};
 	}
 }

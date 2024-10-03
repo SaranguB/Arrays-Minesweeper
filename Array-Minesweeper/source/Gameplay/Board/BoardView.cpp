@@ -1,6 +1,7 @@
 #include "../../header/Gameplay/Board/BoardView.h"
 #include "../../header/Global/ServiceLocator.h"
 #include "../../header/Global/Config.h"
+#include "../../header/Gameplay/Board/BoardController.h"
 
 namespace Gameplay
 {
@@ -55,6 +56,17 @@ namespace Gameplay
 		void BoardView::Reset()
 		{
 		}
+
+		float BoardView::GetCellWidth()
+		{
+			return (boardWidth - boardWidthOffset) / static_cast<float>(BoardController::numberOfColumms);
+		}
+		float BoardView::GetCellHeight()
+		{
+			return (boardHeight - boardHeightOffset) / static_cast<float>(BoardController::numberOfColumms);
+		}
+
+	
 
 	}
 }

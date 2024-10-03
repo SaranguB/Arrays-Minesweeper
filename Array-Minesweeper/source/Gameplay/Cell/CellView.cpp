@@ -28,13 +28,14 @@ namespace Gameplay
 			delete(cellButtom);
 		}
 
-		void CellView::Initialzie()
-		{
-			InitialzieButtonImage(tileSize * 3, tileSize * 3);
-		}
 		void CellView::InitialzieButtonImage(float width, float height)
 		{
-			cellButtom->initialize("cell", Config::cells_texture_path, width * slicecount, height, sf::Vector2f(0, 0));
+			cellButtom->initialize("cell", Config::cells_texture_path, width * slicecount, height, GetCellScreenPosition());
+		}
+
+		void CellView::Initialize(float cellWidth, float cellHeight)
+		{
+			InitialzieButtonImage(cellWidth, cellHeight);
 		}
 
 		void CellView::Update()
@@ -68,6 +69,13 @@ namespace Gameplay
 			}
 
 
+		}
+
+		sf::Vector2f CellView::GetCellScreenPosition()
+		{
+			float xScreenPosition = cellLeftOffset;
+			float YScreenPosition = cellTopOffset;
+			return sf::Vector2f(xScreenPosition, YScreenPosition);
 		}
 
 

@@ -17,11 +17,13 @@ namespace Gameplay
 			delete(cellModel);
 			delete(cellView);
 		}
-		void CellController::Initialzie()
+	
+		void CellController::Initialize(float cellWidth, float cellHeight)
 		{
 			cellModel->Initialzie();
-			cellView->Initialzie();
+			cellView->Initialize(cellWidth,cellHeight);
 		}
+
 		void CellController::Update()
 		{
 			cellView->Update();
