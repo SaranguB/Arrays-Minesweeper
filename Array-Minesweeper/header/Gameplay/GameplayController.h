@@ -6,7 +6,8 @@ namespace Gameplay
 		class GameplayController
 		{
 		private:
-			
+			float maxDuration = 60.f;
+			float remainingTime;
 
 		public:
 			GameplayController();
@@ -17,9 +18,9 @@ namespace Gameplay
 			void Render();
 			void Reset();
 
-			
+			void UpdateRemainingTime();
 
-
+			float GetRemainingTime();
 		};
 	
 }
