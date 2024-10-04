@@ -1,6 +1,7 @@
 #pragma once
 #include "../../header/Gameplay/Cell/CellController.h"
 #include "../../header/UI/UIElement/ButtonView.h"
+#include "BoardController.h"
 
 namespace Gameplay
 {
@@ -27,6 +28,13 @@ namespace Gameplay
 			int GetMineCount();
 
 			void ProcessCellInput(Cell::CellController* controller,UI::UIElement::ButtonType type);
+
+			void ShowBoard();
+
+			void SetBoardState(BoardState state);
+			BoardState GetBoardState();
+
+			void FlagAllMines();
 
 		};
 	}

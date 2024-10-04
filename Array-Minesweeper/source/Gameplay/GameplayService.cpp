@@ -38,5 +38,10 @@ namespace Gameplay
 	{
 		return gameplayController->GetMineCount();;
 	}
+
+	void GameplayService::EndGame(GameResult result)
+	{
+		gameplayController->EndGame(result);
+	}
 	
 }
