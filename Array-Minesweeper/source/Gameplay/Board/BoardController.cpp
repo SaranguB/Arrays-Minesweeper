@@ -133,6 +133,7 @@ namespace Gameplay
 					boardState = BoardState::PLAYING;
 				}
 			}
+			ProcessCellValue(cellPosition);
 			board[cellPosition.x][cellPosition.y]->OpenCell();
 
 		}
@@ -200,6 +201,18 @@ namespace Gameplay
 		{
 			return (cellPosition.x >= 0 && cellPosition.y >= 0 &&
 				cellPosition.x < numberOfColumms && cellPosition.y < numberOfRows);
+		}
+
+		void BoardController::ProcessCellValue(sf::Vector2i cellPosition)
+		{
+			switch (board[cellPosition.x][cellPosition.y]->GetCellValue())
+			{
+			case CellValue::EMPTY:
+				break;
+
+			case CellValue::MINE:
+				break;
+			}
 		}
 
 		void BoardController::ProcessCellInput(Cell::CellController* controller, ButtonType type)
