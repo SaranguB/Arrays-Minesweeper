@@ -5,19 +5,20 @@ namespace Gameplay
 {
 	namespace Board
 	{
+		using namespace Cell;
+		using namespace UI::UIElement;
 
 		BoardService::BoardService()
 		{
-			boardController = nullptr;
-		}
+			boardController = new BoardController();
 
+		}
 		BoardService::~BoardService()
 		{
 			delete(boardController);
 		}
 		void BoardService::Initialize()
 		{
-			boardController = new BoardController();
 
 			boardController->Initialize();
 		}
@@ -33,6 +34,18 @@ namespace Gameplay
 		{
 			boardController->Reset();
 		}
+
+		int BoardService::GetMineCount()
+		{
+			return boardController->GetMineCount();
+		}
+
+		void BoardService::ProcessCellInput(Cell::CellController* controller, UI::UIElement::ButtonType type)
+		{
+			boardController->ProcessCellInput(controller, type);
+		}
+
+		
 
 		void BoardService::Destroy()
 		{
