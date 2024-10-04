@@ -81,7 +81,7 @@ namespace Gameplay
 
 			void ShowBoard();
 
-			
+			void FlagAllMines();
 		};
 	}
 }

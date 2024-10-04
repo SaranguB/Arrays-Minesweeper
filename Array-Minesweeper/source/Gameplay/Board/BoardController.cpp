@@ -317,9 +317,9 @@ namespace Gameplay
 		void BoardController::OpenAllCells()
 		{
 
-			for (int i = 0;i < numberOfColumms;i++)
+			for (int i = 0;i < numberOfRows;i++)
 			{
-				for (int j = 0;j < numberOfRows;j++)
+				for (int j = 0;j < numberOfColumms;j++)
 				{
 					board[i][j]->OpenCell();
 				}
@@ -344,6 +344,25 @@ namespace Gameplay
 
 			default:
 				break;
+
+			}
+		}
+
+		void BoardController::FlagAllMines()
+		{
+			for(int row = 0;row < numberOfRows;row++)
+			{
+				for (int col = 0;col < numberOfColumms;col++)
+				{
+					if (board[row][col]->GetCellValue() == CellValue::MINE &&
+						board[row][col]->GetCellState() != CellState::FLAGGED)
+					{
+						FlagCell(sf::Vector2i(row, col));
+					}
+
+				}
+
+				
 
 			}
 		}

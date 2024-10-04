@@ -60,6 +60,11 @@ namespace Gameplay
 			return boardController->GetBoardState();
 		}
 
+		void BoardService::FlagAllMines()
+		{
+			boardController->FlagAllMines();
+		}
+
 
 
 		void BoardService::Destroy()

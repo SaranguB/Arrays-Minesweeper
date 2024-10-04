@@ -34,6 +34,8 @@ namespace Gameplay
 			void SetBoardState(BoardState state);
 			BoardState GetBoardState();
 
+			void FlagAllMines();
+
 		};
 	}
 }
