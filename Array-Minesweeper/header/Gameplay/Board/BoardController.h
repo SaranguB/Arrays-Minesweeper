@@ -1,19 +1,30 @@
 #pragma once
 #include "../../header/Gameplay/Cell/CellController.h"
 #include "../../header/UI/UIElement/ButtonView.h"
+#include <random>
 
 namespace Gameplay
 {
 	namespace Board
 	{
+		enum class BoardState
+		{
+			FIRST_CELL,       
+			PLAYING,          
+			COMPLETED,   
+		};
+
 		class BoardView;
 		class BoardController
 		{
 		private:
 
 
-
+			BoardState boardState;
 			BoardView* boardView;
+
+			std::default_random_engine randomEngine;
+			std::random_device randomDevice;
 
 			void CreateBoard();
 			void DeleteBoard();
@@ -26,6 +37,13 @@ namespace Gameplay
 
 			int flaggedCell;
 
+			void PopulateBoard(sf::Vector2i cellPosition);
+
+			void PopulateMines(sf::Vector2i cellPosition);
+			void PopulateCells();
+
+			int CountMinesAround(sf::Vector2i cellPosition);
+			bool IsvalidCellPosition(sf::Vector2i cellPosition);
 		public:
 			BoardController();
 			~BoardController();
@@ -49,6 +67,9 @@ namespace Gameplay
 			void ProcessCellInput(Cell::CellController* controller, UI::UIElement::ButtonType type);
 
 			void FlagCell(sf::Vector2i cellPosition);
+
+			void SetBoardState(BoardState state);
+			BoardState GetBoardState();
 
 			
 		};
