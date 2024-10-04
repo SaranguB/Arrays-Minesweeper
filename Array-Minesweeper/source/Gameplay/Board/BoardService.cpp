@@ -45,7 +45,22 @@ namespace Gameplay
 			boardController->ProcessCellInput(controller, type);
 		}
 
-		
+		void BoardService::ShowBoard()
+		{
+			boardController->ShowBoard();
+		}
+
+		void BoardService::SetBoardState(BoardState state)
+		{
+			boardController->SetBoardState(state);
+		}
+
+		BoardState BoardService::GetBoardState()
+		{
+			return boardController->GetBoardState();
+		}
+
+
 
 		void BoardService::Destroy()
 		{

@@ -1,4 +1,5 @@
 #pragma once
+#include "GameplayController.h"
 
 namespace Gameplay
 {
@@ -20,6 +21,8 @@ namespace Gameplay
 		float GetRemainingTime();
 
 		int GetMineCount();
+
+		void EndGame(GameResult result);
 	};
 
 }

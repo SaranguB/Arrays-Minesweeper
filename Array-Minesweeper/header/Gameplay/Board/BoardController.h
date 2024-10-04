@@ -48,6 +48,7 @@ namespace Gameplay
 			void ProcessCellValue(sf::Vector2i cellPosition);
 			void ProcessEmptyCell(sf::Vector2i cellPosition);
 			void OpenEmptyCell(sf::Vector2i cellPosition);
+			void ProcessMineCell(sf::Vector2i cellPosition);
 
 		public:
 			BoardController();
@@ -77,6 +78,8 @@ namespace Gameplay
 			BoardState GetBoardState();
 
 			void OpenAllCells();
+
+			void ShowBoard();
 
 			
 		};
