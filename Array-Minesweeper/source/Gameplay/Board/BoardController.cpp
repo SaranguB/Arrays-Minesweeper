@@ -1,10 +1,16 @@
 #include "../../header/Gameplay/Board/BoardController.h"
 #include "../../header/Gameplay/Board/BoardView.h"
+#include "../../header/Global/ServiceLocator.h"
+#include "../../header/Sound/SoundService.h"
+
 
 namespace Gameplay
 {
 	namespace Board
 	{
+		using namespace UI::UIElement;
+		using namespace Global;
+		using namespace Sound;
 		using namespace Cell;
 
 		BoardController::BoardController()
@@ -74,7 +80,7 @@ namespace Gameplay
 				for (int j = 0;j < numberOfColumms;j++)
 				{
 
-					board[i][j] = new CellController(sf::Vector2i(i,j));
+					board[i][j] = new Cell::CellController(sf::Vector2i(i, j));
 				}
 			}
 
@@ -93,6 +99,7 @@ namespace Gameplay
 
 		void BoardController::Reset()
 		{
+			flaggedCell = 0;
 			ResetBoard();
 		}
 
@@ -110,8 +117,54 @@ namespace Gameplay
 
 		int BoardController::GetMineCount()
 		{
-			return minesCount;
+			return minesCount - flaggedCell;
 		}
+
+		void BoardController::OpenCell(sf::Vector2i cellPosition)
+		{
+			if (board[cellPosition.x][cellPosition.y]->CanOpenCell())
+			{
+				board[cellPosition.x][cellPosition.y]->OpenCell();
+				ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::FLAG);
+			}
+
+		}
+
+		void BoardController::ProcessCellInput(Cell::CellController* controller, ButtonType type)
+		{
+			switch (type)
+			{
+			case UI::UIElement::ButtonType::LEFT_MOUSE_BUTTON:
+				OpenCell(controller->GetCellPosition());
+
+				break;
+
+			case UI::UIElement::ButtonType::RIGHT_MOUSE_BUTTON:
+				FlagCell(controller->GetCellPosition());
+				break;
+			default:
+				break;
+			}
+		}
+
+		void BoardController::FlagCell(sf::Vector2i cellPosition)
+		{
+			switch (board[cellPosition.x][cellPosition.y]->GetCellState())
+			{
+			case CellState::FLAGGED:
+				ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::FLAG);
+				flaggedCell--;
+				break;
+
+			case CellState::HIDDEN:
+				ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::FLAG);
+				flaggedCell++;
+				break;
+			}
+			board[cellPosition.x][cellPosition.y]->FlagCell();
+		}
+
+
 
 	}
 }

@@ -56,13 +56,14 @@ namespace Global
 		event_service->update();
 		timeService->update();
 		graphic_service->update();
-		ui_service->update();
 
 		if (GameService::getGameState() == GameState::GAMEPLAY)
 		{
-			boardService->Update();
 			gameplayService->Update();
+			boardService->Update();
 		}
+		ui_service->update();
+
 	}
 
 	void ServiceLocator::render()

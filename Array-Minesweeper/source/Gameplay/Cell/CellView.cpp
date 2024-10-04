@@ -55,7 +55,7 @@ namespace Gameplay
 		{
 			cellButtom->render();
 			SetCellTexture();
-
+			
 		}
 
 		void CellView::SetCellTexture()
@@ -99,20 +99,7 @@ namespace Gameplay
 		void CellView::CellButtonCallback(ButtonType type)
 		{
 			
-			switch (type)
-			{
-			case ButtonType::LEFT_MOUSE_BUTTON:
-				cellController->OpenCell();
-				break;
-
-			case ButtonType::RIGHT_MOUSE_BUTTON:
-				//printf("right Is CLicked");
-				cellController->FlagCell();
-				break;
-
-			default:
-				break;
-			}
+			ServiceLocator::getInstance()->GetBoardService()->ProcessCellInput(cellController, type);
 		}
 
 

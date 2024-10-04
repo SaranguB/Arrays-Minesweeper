@@ -1,6 +1,6 @@
 #pragma once
 #include "../../header/Gameplay/Cell/CellController.h"
-
+#include "../../header/UI/UIElement/ButtonView.h"
 
 namespace Gameplay
 {
@@ -24,6 +24,8 @@ namespace Gameplay
 
 			void InitializeCells();
 
+			int flaggedCell;
+
 		public:
 			BoardController();
 			~BoardController();
@@ -43,7 +45,12 @@ namespace Gameplay
 
 			int GetMineCount();
 
+			void OpenCell(sf::Vector2i cellPosition);
+			void ProcessCellInput(Cell::CellController* controller, UI::UIElement::ButtonType type);
 
+			void FlagCell(sf::Vector2i cellPosition);
+
+			
 		};
 	}
 }

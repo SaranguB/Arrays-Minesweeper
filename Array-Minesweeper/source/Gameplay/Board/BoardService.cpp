@@ -5,6 +5,8 @@ namespace Gameplay
 {
 	namespace Board
 	{
+		using namespace Cell;
+		using namespace UI::UIElement;
 
 		BoardService::BoardService()
 		{
@@ -35,8 +37,15 @@ namespace Gameplay
 
 		int BoardService::GetMineCount()
 		{
-			return boardController->GetMineCount();;
+			return boardController->GetMineCount();
 		}
+
+		void BoardService::ProcessCellInput(Cell::CellController* controller, UI::UIElement::ButtonType type)
+		{
+			boardController->ProcessCellInput(controller, type);
+		}
+
+		
 
 		void BoardService::Destroy()
 		{
