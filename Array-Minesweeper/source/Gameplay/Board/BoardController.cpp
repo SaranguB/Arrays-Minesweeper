@@ -266,6 +266,9 @@ namespace Gameplay
 
 		void BoardController::ProcessCellInput(Cell::CellController* controller, ButtonType type)
 		{
+			if (boardState == BoardState::COMPLETED)
+				return;
+
 			switch (type)
 			{
 			case UI::UIElement::ButtonType::LEFT_MOUSE_BUTTON:
@@ -325,7 +328,7 @@ namespace Gameplay
 
 		void BoardController::ShowBoard()
 		{
-			switch (GetBoardState())
+			switch (ServiceLocator::getInstance()->GetBoardService()->GetBoardState())
 			{
 			case BoardState::FIRST_CELL:
 				PopulateBoard(sf::Vector2i(0, 0));

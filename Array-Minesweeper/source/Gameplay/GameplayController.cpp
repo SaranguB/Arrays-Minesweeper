@@ -7,6 +7,8 @@ namespace Gameplay
 {
 	using namespace Main;
 	using namespace Global;
+	using namespace Board;
+
 
 	GameplayController::GameplayController()
 	{
@@ -20,12 +22,22 @@ namespace Gameplay
 	void GameplayController::Update()
 	{
 		UpdateRemainingTime();
+		if (IsTimeOut())
+		{
+			EndGame(GameResult::LOST);
+		}
+	}
+
+	bool GameplayController::IsTimeOut()
+	{
+		return (remainingTime <= 1);
 	}
 	void GameplayController::Render()
 	{
 	}
 	void GameplayController::Reset()
 	{
+		gameResult = GameResult::NONE;
 		ServiceLocator::getInstance()->GetBoardService()->ResetBoard();
 		remainingTime = maxDuration;
 	}
@@ -52,6 +64,9 @@ namespace Gameplay
 		case GameResult::LOST:
 			GameLost();
 			break;
+
+		default:
+			break;
 		}
 	}
 	void GameplayController::GameWon()
@@ -65,7 +80,7 @@ namespace Gameplay
 			gameResult = GameResult::LOST;
 			BeginGameOverTimer();
 			ServiceLocator::getInstance()->GetBoardService()->ShowBoard();
-			ServiceLocator::getInstance()->GetBoardService()->SetBoardState(Board::BoardState::COMPLETED);
+			ServiceLocator::getInstance()->GetBoardService()->SetBoardState(BoardState::COMPLETED);
 
 		}
 		else

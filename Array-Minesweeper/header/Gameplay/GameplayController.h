@@ -18,6 +18,7 @@ namespace Gameplay
 
 		GameResult gameResult = GameResult::NONE;
 
+		bool IsTimeOut();
 	public:
 		GameplayController();
 		~GameplayController();
