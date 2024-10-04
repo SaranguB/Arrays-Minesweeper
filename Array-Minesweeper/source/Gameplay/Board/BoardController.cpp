@@ -246,6 +246,22 @@ namespace Gameplay
 			return boardState;
 		}
 
+		void BoardController::OpenAllCells()
+		{
+			if (boardState == BoardState::FIRST_CELL)
+			{
+				PopulateBoard(sf::Vector2i(0, 0));
+			}
+
+			for (int i = 0;i < numberOfColumms;i++)
+			{
+				for (int j = 0;j < numberOfRows;j++)
+				{
+					board[i][j]->OpenCell();
+				}
+			}
+		}
+
 
 
 	}
