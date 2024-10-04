@@ -208,11 +208,52 @@ namespace Gameplay
 			switch (board[cellPosition.x][cellPosition.y]->GetCellValue())
 			{
 			case CellValue::EMPTY:
+				ProcessEmptyCell(cellPosition);
 				break;
 
 			case CellValue::MINE:
 				break;
+
+			default:
+				ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+				break;
 			}
+		}
+
+		void BoardController::ProcessEmptyCell(sf::Vector2i cellPosition)
+		{
+			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+			OpenEmptyCell(cellPosition);
+		}
+
+		void BoardController::OpenEmptyCell(sf::Vector2i cellPosition)
+		{
+			switch (board[cellPosition.x][cellPosition.y]->GetCellState())
+			{
+			case CellState::OPEN:
+				return;
+
+			case CellState::FLAGGED:
+				flaggedCell--;
+
+			default:
+				board[cellPosition.x][cellPosition.y]->OpenCell();
+			}
+
+			for (int a = -1; a < 2; a++)
+			{
+
+				for (int b = -1;b < 2;b++)
+				{
+					if ((a == 0 && b == 0) || !IsvalidCellPosition(sf::Vector2i(cellPosition.x + a, cellPosition.y + b)))
+					{
+						continue;
+					}
+					sf::Vector2i nextCellPosition = sf::Vector2i(a + cellPosition.x, b + cellPosition.y);
+					OpenCell(nextCellPosition);
+				}
+			}
+
 		}
 
 		void BoardController::ProcessCellInput(Cell::CellController* controller, ButtonType type)
@@ -229,7 +270,10 @@ namespace Gameplay
 				break;
 			default:
 				break;
+
+
 			}
+
 		}
 
 		void BoardController::FlagCell(sf::Vector2i cellPosition)
